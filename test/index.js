@@ -793,5 +793,84 @@ module.exports = {
     );
 
     test.done();
+  },
+
+  // Test: variant 16 (gmail plain text line break)
+  testVariant16: function(test) {
+    loopTests(
+      [
+        "gmail_plain_text_body",
+      ],
+
+      (result, entryName) => {
+        test.strictEqual((result.email.from || {}).address, FROM_ADDRESS);
+        test.strictEqual((result.email.from || {}).name, "John Doe");
+
+        test.strictEqual(((result.email.to || [])[0] || {}).address, TO_ADDRESS_1);
+        test.strictEqual(((result.email.to || [])[0] || {}).name, "Berry Bessy");
+
+        test.strictEqual(result.email.cc.length, 5);
+        test.strictEqual(((result.email.cc || [])[0] || {}).address, CC_ADDRESS_1);
+        test.strictEqual(((result.email.cc || [])[0] || {}).name, "Walter Sheltannnnnnnn");
+        test.strictEqual(((result.email.cc || [])[1] || {}).address, CC_ADDRESS_2);
+        test.strictEqual(((result.email.cc || [])[1] || {}).name, "NNNNNNNNNNNNicholas Landers");
+        test.strictEqual(((result.email.cc || [])[2] || {}).address, "foobar.barington@foorbar.acme.long.com");
+        test.strictEqual(((result.email.cc || [])[2] || {}).name, "Foobar Barington");
+        test.strictEqual(((result.email.cc || [])[3] || {}).address, "baz.quox@bazquox.acme.com");
+        test.strictEqual(((result.email.cc || [])[3] || {}).address, "baz.quox@bazquox.acme.com");
+        test.strictEqual(((result.email.cc || [])[4] || {}).name, "Alongnamethattakesuptherestoftheline bar");
+        test.strictEqual(((result.email.cc || [])[4] || {}).address, "alongnamethattakesuptherestoftheline.bar@acme.com");
+      }
+    );
+
+    test.done();
+  },
+
+  // Test: variant 17 (gmail plain text line break super long name)
+  testVariant17: function(test) {
+    loopTests(
+      [
+        "gmail_plain_text_body_variant_2"
+      ],
+
+      (result, entryName) => {
+        test.strictEqual((result.email.from || {}).address, FROM_ADDRESS);
+        test.strictEqual((result.email.from || {}).name, "John Doe");
+
+        test.strictEqual(((result.email.to || [])[0] || {}).address, TO_ADDRESS_1);
+        test.strictEqual(((result.email.to || [])[0] || {}).name, "Berry Bessy");
+
+        test.strictEqual(result.email.cc.length, 1);
+        test.strictEqual(((result.email.cc || [])[0] || {}).address, "foo@acme.com");
+        test.strictEqual(((result.email.cc || [])[0] || {}).name, "Someonewithareallylongnamethatisinmycompanyandhatesmygutsbecausetheirnameissolong");
+      }
+    );
+
+    test.done();
+  },
+
+  // Test: variant 18 (gmail plain text line break super long name no equals)
+  // Known broken edge case, can't figure out a heuristic to determine when the next line
+  // contains the email for the the current line's name. Feels like we need a real parser for this.
+  testVariant18: function(test) {
+    loopTests(
+      [
+        "gmail_plain_text_body_variant_3"
+      ],
+
+      (result, entryName) => {
+        test.strictEqual((result.email.from || {}).address, FROM_ADDRESS);
+        test.strictEqual((result.email.from || {}).name, "John Doe");
+
+        test.strictEqual(((result.email.to || [])[0] || {}).address, TO_ADDRESS_1);
+        test.strictEqual(((result.email.to || [])[0] || {}).name, "Berry Bessy");
+
+        test.strictEqual(result.email.cc.length, 1);
+        test.strictEqual(((result.email.cc || [])[0] || {}).address, "foo@acme.com");
+        test.strictEqual(((result.email.cc || [])[0] || {}).name, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      }
+    );
+
+    test.done();
   }
 }
