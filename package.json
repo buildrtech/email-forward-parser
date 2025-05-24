@@ -1,6 +1,6 @@
 {
   "name": "b-email-forward-parser",
-  "version": "100.0.0",
+  "version": "101.0.0",
   "description": "Parses forwarded emails and extract content",
   "author": "Buildr <dev@buildr.com>",
   "main": "lib/index.js",
@@ -24,7 +24,7 @@
     "nodeunit-x": "0.15.0"
   },
   "dependencies": {
-    "re2": "1.21.4"
+    "re2": "1.21.5"
   },
   "keywords": [
     "parser",
