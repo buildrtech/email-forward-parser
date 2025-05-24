@@ -1,17 +1,17 @@
 {
   "name": "email-forward-parser",
-  "version": "1.7.1",
+  "version": "100.0.0",
   "description": "Parses forwarded emails and extract content",
-  "author": "Eliott Vincent <eliott@crisp.chat>",
+  "author": "Buildr <dev@buildr.com>",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/crisp-oss/email-forward-parser",
+  "homepage": "https://github.com/buildrtech/email-forward-parser",
   "repository": {
     "type": "git",
-    "url": "git://github.com/crisp-oss/email-forward-parser"
+    "url": "git://github.com/buildrtech/email-forward-parser"
   },
   "bugs": {
-    "url": "https://github.com/crisp-oss/email-forward-parser/issues"
+    "url": "https://github.com/buildrtech/email-forward-parser/issues"
   },
   "engineStrict": true,
   "engines": {
