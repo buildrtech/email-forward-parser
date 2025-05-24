@@ -1,5 +1,5 @@
 {
-  "name": "email-forward-parser",
+  "name": "b-email-forward-parser",
   "version": "100.0.0",
   "description": "Parses forwarded emails and extract content",
   "author": "Buildr <dev@buildr.com>",
